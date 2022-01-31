@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Empleado } from '../models/empleado';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,7 +19,7 @@ export class EmpleadoService {
       nombreCompleto: 'Diana Gonzales',
       correo: 'dinaRivere@gmail.com',
       telefono: 99238822,
-      sexo: 'Femenina',
+      sexo: 'Femenino',
       fechaIngreso: new Date(),
       estadoCivil: 'Casada',
     },
@@ -34,23 +35,23 @@ export class EmpleadoService {
       nombreCompleto: 'Doris Caseres',
       correo: 'doris@gmail.com',
       telefono: 3939122,
-      sexo: 'Femenina',
+      sexo: 'Femenino',
       fechaIngreso: new Date(),
-      estadoCivil: 'Soltera',
+      estadoCivil: 'Soltero',
     },
     {
       nombreCompleto: 'Greisy Najera',
       correo: 'grey@gmail.com',
       telefono: 9037723,
-      sexo: 'Femenina',
+      sexo: 'Femenino',
       fechaIngreso: new Date(),
-      estadoCivil: 'Soltera',
+      estadoCivil: 'Soltero',
     },
     {
       nombreCompleto: 'Shelsea',
       correo: 'shell@gmail.com',
       telefono: 93812,
-      sexo: 'Femenina',
+      sexo: 'Femenino',
       fechaIngreso: new Date(),
       estadoCivil: 'Casada',
     },
@@ -64,5 +65,24 @@ export class EmpleadoService {
 
   eliminarEmpleado(index: number) {
     this.listEmpleado.splice(index, 1);
+  }
+
+  agregarEmpleado(empleado: Empleado){
+    this.listEmpleado.unshift(empleado)
+  }
+
+  getEmpleado(index: number){
+    return this.listEmpleado[index];
+  }
+
+
+  editEmpledo(empleado: Empleado, idEmpleado: number){
+    this.listEmpleado[idEmpleado].nombreCompleto = empleado.nombreCompleto;
+    this.listEmpleado[idEmpleado].correo = empleado.correo;
+    this.listEmpleado[idEmpleado].telefono = empleado.telefono;
+    this.listEmpleado[idEmpleado].sexo = empleado.sexo;
+    this.listEmpleado[idEmpleado].fechaIngreso = empleado.fechaIngreso;
+    this.listEmpleado[idEmpleado].estadoCivil = empleado.estadoCivil
+
   }
 }
