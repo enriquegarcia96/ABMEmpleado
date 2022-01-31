@@ -1,1 +1,151 @@
-<p>add-edit-empleado works!</p>
+<div class="row">
+  <div class="col-lg-6">
+    <h2>Agregar Empleado</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4">
+    <form [formGroup]="myForm" autocomplete="off">
+      <div class="col-lg-12">
+        <mat-form-field class="example-container" [style.fontSize.px]="16">
+          <mat-label>Nombre Completo</mat-label>
+          <input matInput formControlName="nombreCompleto" required />
+          <!-- <mat-error>Debe de ingresar el nombre completo</mat-error> -->
+        </mat-form-field>
+        <div *ngIf="validarCampo('nombreCompleto')" style="margin-top: -20px">
+          <span class="mda-form-msg"
+            >Este campo es <strong>requerido</strong></span
+          >
+        </div>
+
+        <div
+          *ngIf="validarTipoValidacion('nombreCompleto')"
+          style="margin-top: -20px"
+        >
+          <span class="mda-form-msg"
+            >El campo debe tener como maximo<strong>20 caracteres</strong></span
+          >
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <mat-form-field class="example-container" [style.fontSize.px]="16">
+          <mat-label>Correo</mat-label>
+            <input matInput formControlName="correo" required type="email" />
+          <!-- <mat-error>Debe de ingresar un corre</mat-error> -->
+        </mat-form-field>
+
+        <div *ngIf="validarCampo('correo')" style="margin-top: -20px">
+          <span class="mda-form-msg"
+            >Este campo es <strong>requerido</strong></span
+          >
+        </div>
+
+        <div *ngIf="validarTipoValidacion('correo')" style="margin-top: -20px">
+          <span class="mda-form-msg"
+            >Este campo es <strong>requerido</strong></span
+          >
+        </div>
+      </div>
+      <br />
+      <br />
+      <div class="col-lg-12">
+        <mat-form-field class="example-container">
+          <mat-label>Fecha Ingreso</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="fechaIngreso"
+            required
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker></mat-datepicker>
+          <!-- <mat-error>Debe de ingresar una fecha</mat-error> -->
+        </mat-form-field>
+        <div *ngIf="validarCampo('fechaIngreso')" style="margin-top: -20px">
+          <span class="mda-form-msg"
+            >Este campo es <strong>requerido</strong></span
+          >
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <mat-form-field class="example-container" [style.fontSize.px]="16">
+          <mat-label>Telefono</mat-label>
+          <input matInput formControlName="telefono" type="number" required />
+          <!-- <mat-error>debe de ingresar un telefono</mat-error> -->
+        </mat-form-field>
+        <div *ngIf="validarCampo('telefono')" style="margin-top: -20px">
+          <span class="mda-form-msg"
+            >Este campo es <strong>requerido</strong></span
+          >
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <mat-form-field class="example-container">
+          <mat-label>Estado Civil</mat-label>
+          <mat-select formControlName="estadoCivil" required>
+            <mat-option
+              *ngFor="let estadoCivil of estadosCiviles"
+              [value]="estadoCivil"
+            >
+              {{ estadoCivil }}
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error>Debe de ingresar un estado civil</mat-error> -->
+        </mat-form-field>
+        <div *ngIf="validarCampo('estadoCivil')" style="margin-top: -20px">
+          <span class="mda-form-msg"
+            >Este campo es <strong>requerido</strong></span
+          >
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <mat-radio-group
+          aria-label="Seleccione Genero"
+          formControlName="sexo"
+          required
+        >
+          <mat-radio-button value="Maculino" style="margin-right: 10px"
+            >Masculino</mat-radio-button
+          >
+          <mat-radio-button value="Femenino">Femenino</mat-radio-button>
+        </mat-radio-group>
+        <div *ngIf="validarCampo('sexo')" style="margin-top: -20px">
+          <span class="mda-form-msg"
+            >Este campo es <strong>requerido</strong></span
+          >
+        </div>
+      </div>
+      <br />
+      <div class="col-lg-12">
+        <button
+          class="btn btn btn-success btn-lg float-right"
+          type="button"
+          style="margin-left: 10px"
+          (click)="guardarEmpleado()"
+          [disabled]="myForm.invalid"
+        >
+          Aceptar
+        </button>
+        <button
+          class="btn btn btn-secondary btn-lg float-right"
+          type="button"
+          routerLink="/"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="col-lg-4 offset-lg-2">
+    <img
+      src="../../../assets/img/crear-usuario.jpg"
+      alt=""
+      width="95%"
+      height="95%"
+    />
+  </div>
+</div>
